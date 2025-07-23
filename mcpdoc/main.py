@@ -161,6 +161,21 @@ def create_server(
         A FastMCP server instance configured with documentation tools
     """
     settings = settings or {}
+
+    # Use the list_doc_sources tool to see available documentation sources.
+    # This tool will return a URL for each documentation source.
+    # Documentation URLs are available from this tool for LangGraph Python.
+    # Once you have a source documentation URL, use the fetch_docs tool to get the documentation contents. 
+    # If the documentation contents contains a URL for additional documentation that is relevant to your task, you can use the fetch_docs tool to fetch documentation from that URL next.
+    
+    # list_doc_sources 도구를 사용하여 사용 가능한 문서 소스를 확인하세요.
+    # 이 도구는 각 문서 소스에 대한 URL을 반환합니다.
+    # LangGraph Python에 대한 문서 URL을 이 도구에서 사용할 수 있습니다.
+
+    # 소스 문서 URL을 얻은 후, fetch_docs 도구를 사용하여 문서 내용을 가져오세요.
+    # 문서 내용에 작업과 관련된 추가 문서에 대한 URL이 포함되어 있다면, 
+    # fetch_docs 도구를 사용하여 해당 URL에서 문서를 다음에 가져올 수 있습니다.
+
     server = FastMCP(
         name="llms-txt",
         instructions=_get_server_instructions(doc_sources),
