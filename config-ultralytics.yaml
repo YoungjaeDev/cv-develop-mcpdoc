@@ -1,0 +1,87 @@
+# llms.txt Generator Configuration
+
+# API Settings
+api:
+  firecrawl:
+    base_url: "https://api.firecrawl.dev/v1"
+    timeout: 30000  # milliseconds
+  openai:
+    model: "gpt-4.1-mini"
+    temperature: 0.3
+    max_tokens: 100
+
+# URL Processing Settings
+urls:
+  # Maximum URLs to discover during mapping phase
+  map_limit: 500
+  
+  # Maximum URLs to actually process (should be <= map_limit)
+  process_limit: 50  # 원본 500개에서 50개로 제한
+  
+  # Include subdomains when mapping
+  include_subdomains: false
+  
+  # Use sitemap for discovery
+  use_sitemap: true
+  
+  # URL patterns to exclude (supports both strings and regex patterns)
+  exclude_patterns:
+    # Compare 페이지들 제거 (가장 우선순위)
+    - "/compare/.*"
+    
+    # Hub 페이지들 제거 (상업적 서비스)
+    - "/hub/.*"
+    
+    # 특정 데이터셋 제거 (너무 구체적)
+    - "/datasets/classify/(caltech101|caltech256|cifar10|cifar100|fashion-mnist|imagenet10|imagenette|imagewoof|mnist)"
+    - "/datasets/detect/(african-wildlife|brain-tumor|globalwheat2020|homeobjects-3k|medical-pills|signature|sku-110k)"
+    
+    # 특정 플랫폼 통합 제거
+    - "/integrations/(amazon-sagemaker|clearml|comet|dvc|ibm-watsonx|jupyterlab|kaggle|mlflow|paperspace|ray-tune|seeedstudio-recamera|sony-imx500|tensorboard|weights-biases)"
+    
+    # 로우레벨 레퍼런스 제거
+    - "/reference/.*/modules/.*"
+    - "/reference/utils/callbacks/.*"
+    - "/reference/trackers/utils/.*"
+    
+    # 특정 프로젝트용 가이드 제거
+    - "/guides/(azureml-quickstart|coral-edge-tpu-on-raspberry-pi|deepstream-nvidia-jetson|parking-management|queue-management|security-alarm-system|workouts-monitoring)"
+    
+    # YOLOv5 구버전 문서 제거 (YOLO11이 최신이므로)
+    - "/yolov5/.*"
+
+# Processing Settings
+processing:
+  # Number of URLs to process in parallel batches
+  batch_size: 5
+  
+  # Maximum concurrent workers per batch
+  max_workers: 3
+  
+  # Delay between batches (seconds) to avoid rate limiting
+  batch_delay: 2.0
+  
+  # Content length limit for OpenAI processing (characters)
+  content_limit: 4000
+
+# Output Settings
+output:
+  # Generate full text file
+  generate_full_text: true
+  
+  # Remove page separators from full text
+  clean_page_separators: true
+  
+  # File naming pattern
+  filename_pattern: "{domain}-llms.txt"
+  full_filename_pattern: "{domain}-llms-full.txt"
+
+# Scraping Settings
+scraping:
+  formats: ["markdown"]
+  only_main_content: true
+  
+# Logging Settings
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s" 

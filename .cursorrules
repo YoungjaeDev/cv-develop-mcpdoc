@@ -1,0 +1,52 @@
+# Jupyter Notebook Cell Management Rules
+
+## Core Principles for Jupyter Notebook (.ipynb) Files
+
+### Cell Creation vs. Editing Decision Logic
+- **ANALYZE CONTEXT FIRST**: Always examine the conversation history and existing notebook structure before deciding whether to create new cells or edit existing ones
+- **EDITING SCENARIOS**: Modify existing cells when:
+  - User requests changes, improvements, or fixes to already written code
+  - User wants to update parameters, variables, or logic in existing code
+  - User asks to "change", "modify", "update", "fix", or "improve" something specific
+  - The conversation indicates continuation or refinement of previous work
+  
+- **NEW CELL SCENARIOS**: Create new cells when:
+  - User requests completely new functionality or analysis
+  - User explicitly asks for "new" code or "additional" analysis
+  - The conversation indicates a new phase or section of work
+  - User wants to explore a different approach or dataset
+
+### Implementation Guidelines
+1. **Context Analysis**: Review the last 5-10 conversation turns to understand:
+   - What code already exists in the notebook
+   - Whether the user is asking for modifications or new additions
+   - The current state of the analysis or development
+
+2. **Cell Targeting**: When editing:
+   - Identify the specific cell containing the relevant code
+   - Replace or modify the existing code in that cell
+   - Maintain the cell's position and structure
+   - Preserve related markdown cells and their relationships
+
+3. **Cell Creation**: When adding new functionality:
+   - Create new cells in logical sequence
+   - Add appropriate markdown cells for documentation
+   - Ensure proper cell ordering for reproducibility
+
+### Code Modification Patterns
+- **Bug Fixes**: Edit the problematic cell directly
+- **Parameter Changes**: Modify existing variable assignments in place
+- **Logic Updates**: Replace or refactor existing function definitions
+- **Output Improvements**: Enhance existing visualization or analysis code
+
+### Communication Style
+- Clearly state whether you're editing existing cells or creating new ones
+- Explain the reasoning behind your decision
+- Highlight what changes are being made to existing code
+- Maintain consistency with existing code style and patterns
+
+### Error Prevention
+- Always check if similar functionality already exists before creating new cells
+- Avoid duplicating imports or variable definitions
+- Ensure edited cells maintain their dependencies
+- Test that modifications don't break downstream cells
